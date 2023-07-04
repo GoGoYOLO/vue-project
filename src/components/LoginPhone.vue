@@ -53,7 +53,7 @@ export default {
     toPassword() {
       const reg_tel =
         /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
-      if (reg_tel.test(this.phone)) {
+      if (!reg_tel.test(this.phone)) {
         alert("请输入正确的手机号码");
       } else {
         this.$router.push({
@@ -67,7 +67,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   height: 100%;
   position: absolute;

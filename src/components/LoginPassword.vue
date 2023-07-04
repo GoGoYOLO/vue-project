@@ -34,33 +34,39 @@ export default {
   methods: {
     login() {
       this.userList = this.$store.state.userAbout.userList;
-
-      this.userList.forEach((user) => {
-        if (user.phone === this.$route.query.phone) {
-          if (this.password == user.password) {
+      if (this.password !== "") {
+        this.userList.forEach((user) => {
+          if (user.phone === this.$route.query.phone) {
+            if (this.password == user.password) {
+              this.$router.push({
+                name: "home",
+              });
+              this.password = "";
+            } else {
+              alert("密码不正确");
+            }
+          } else {
+            const userObj = {
+              id: nanoid(),
+              phone: this.$route.query.phone,
+              password: this.password,
+            };
+            this.$store.commit("userAbout/addUser", userObj);
             this.$router.push({
               name: "home",
             });
             this.password = "";
-          } else {
-            alert("密码不正确");
           }
-        } else {
-          const userObj = {
-            id: nanoid(),
-            phone: this.$route.query.phone,
-            password: this.password,
-          };
-          this.$store.commit("userAbout/addUser", userObj);
-          this.password = "";
-        }
-      });
+        });
+      } else {
+        alert("请输入密码");
+      }
     },
   },
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   height: 100%;
   position: absolute;
