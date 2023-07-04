@@ -1,23 +1,23 @@
 <template>
   <!-- 组件结构 -->
   <div class="demo">
-    <h2>学生姓名：{{ name }}</h2>
+    <h2>学校名称：{{ name }}</h2>
   </div>
 </template>
 
-<script setup lang="ts">
+<script lang="ts">
 //组件交互
 export default {
-  name: "MyStudent",
+  name: "MySchool",
   data() {
     return {
-      name: "小a"
+      name: "xxx中学",
     };
   },
 };
 </script>
 
-<style lang="" scoped>
+<style scoped>
 /* 组件样式 */
 .demo {
   background-color: red;

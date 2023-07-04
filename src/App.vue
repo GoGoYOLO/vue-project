@@ -1,20 +1,16 @@
 <template>
-  <div>
-    <MySchool></MySchool>
-    <MyStudent></MyStudent>
-  </div>
+  <LoginUserName />
 </template>
 
 <script>
-//引入组件
-import MySchool from "./components/MySchool"
-import MyStudent from "./components/MyStudent"
-
+import LoginUserName from "./components/LoginUserName.vue";
 export default {
   name: "App",
   components: {
-    MySchool:MySchool,
-    MyStudent:MyStudent
+    LoginUserName,
   },
 };
 </script>
+
+<style>
+</style>

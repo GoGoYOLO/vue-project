@@ -1,0 +1,14 @@
+const obj = {
+  install(Vue){
+    //过滤器
+    Vue.filter('mySlice',function(value){
+      return value.slice(0,4)
+    })
+    //指令
+    Vue.directive('fbind',function(){
+      
+    })
+  }
+}
+
+export default obj
