@@ -2,7 +2,7 @@
   <div>
     <router-view></router-view>
     <div v-show="$store.state.userAbout.isLogin" class="navi">
-      <div class="text">{{ $store.state.musicAbout.currentMusic }}</div>
+      <div class="text">{{ $store.state.userAbout.currentUser.currentMusic }}</div>
       <div class="link">
         <router-link active-class="red" to="/home">Home</router-link>
         <router-link active-class="red" to="/user">User</router-link>

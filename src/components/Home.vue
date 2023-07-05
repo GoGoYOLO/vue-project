@@ -20,12 +20,9 @@
 <script>
 export default {
   name: "Home",
-  data() {
-    return {};
-  },
   methods: {
     showText(item) {
-      this.$store.commit("musicAbout/updateCurrentMusic", item.name);
+      this.$store.state.userAbout.currentUser.currentMusic = item.name;
     },
   },
 };

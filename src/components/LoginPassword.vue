@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       password: "",
+      user: {},
     };
   },
   methods: {
@@ -44,36 +45,42 @@ export default {
       });
     },
     login() {
-      this.userList = this.$store.state.userAbout.userList;
-      if (this.password !== "") {
-        this.userList.forEach((user) => {
-          if (user.phone === this.$route.query.phone) {
-            if (this.password == user.password) {
-              this.$router.replace({
-                name: "user"
-              });
-              this.password = "";
-              this.$store.commit("userAbout/updateLoginStatus",user);
-            } else {
-              alert("密码不正确");
-            }
-          } else {
-            const userObj = {
-              id: nanoid(),
-              phone: this.$route.query.phone,
-              password: this.password,
-              nickName: "用户" + nanoid(),
-            };
-            this.$store.commit("userAbout/addUser", userObj);
-            this.$store.commit("userAbout/updateLoginStatus",userObj);
+      if (this.password != "") {
+        this.userList = this.$store.state.userAbout.userList;
+
+        this.user = this.userList.filter((user) => {
+          return user.phone == this.$route.query.phone;
+        });
+
+        if (this.user.length == 1) {
+          if (this.password == this.user[0].password) {
             this.$router.replace({
-              name: "user"
+              name: "user",
             });
             this.password = "";
+            this.$store.commit("userAbout/updateLoginStatus", this.user[0]);
+          } else {
+            alert("密码不正确");
           }
-        });
-      } else {
-        alert("请输入密码");
+        } else {
+          const userObj = {
+            id: nanoid(),
+            phone: this.$route.query.phone,
+            password: this.password,
+            nickName: "用户" + nanoid(),
+            currentMusic: "默认",
+            typeList: [],
+            songList: [],
+          };
+          this.$store.commit("userAbout/addUser", userObj);
+          this.$store.commit("userAbout/updateLoginStatus", userObj);
+          this.$router.replace({
+            name: "user",
+          });
+          this.password = "";
+        }
+      }else{
+        alert('请输入密码')
       }
     },
   },

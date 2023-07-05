@@ -8,7 +8,7 @@
       +86
       <input
         class="input"
-        type="text"
+        type="number"
         v-model="phone"
         placeholder="请输入手机号码"
       />
@@ -59,7 +59,7 @@ export default {
       if (reg_tel.test(this.phone)) {
         alert("请输入正确的手机号码");
       } else {
-        this.$router.push({
+        this.$router.replace({
           name: "password",
           query: { phone: this.phone },
         });
@@ -78,6 +78,15 @@ export default {
   border: 0;
   outline: none;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 .next {
   width: 100%;
   margin-top: 50px;
