@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import store from './store/index'
-import { Button, Row,DatePicker,Carousel ,CarouselItem} from 'element-ui';
+import { Button, Row,DatePicker,Carousel ,CarouselItem,Drawer} from 'element-ui';
 import VueRouter from 'vue-router'
 import router from './router'
 
@@ -11,6 +11,7 @@ Vue.use(Button);
 Vue.use(Row)
 Vue.use(CarouselItem)
 Vue.use(Carousel)
+Vue.use(Drawer)
 
 new Vue({
   el:'#app',

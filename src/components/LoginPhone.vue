@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="header">
+    <div>
       <h2>手机号登录</h2>
       <h4 style="color: grey">未注册的手机号将自动生成新账号</h4>
     </div>
@@ -13,19 +13,22 @@
         placeholder="请输入手机号码"
       />
     </div>
+
     <el-row>
       <el-button type="warning" round class="next" @click="toPassword"
         >下一步</el-button
       >
     </el-row>
     <h6 style="color: grey; text-align: center">酷我账号登录</h6>
+
     <div class="footer">
-      <div>
+      <div class="row">
         <el-button type="primary" icon="el-icon-edit" circle></el-button>
         <el-button type="success" icon="el-icon-check" circle></el-button>
         <el-button type="info" icon="el-icon-message" circle></el-button>
+        <el-button icon="el-icon-apple" round>通过Apple登录</el-button>
       </div>
-      <div class="agree">
+      <div class="row">
         <input type="checkbox" />
         <h6>
           登录即同意<a href="http://www.baidu.com">酷我用户协议</a>，<a
@@ -53,7 +56,7 @@ export default {
     toPassword() {
       const reg_tel =
         /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
-      if (!reg_tel.test(this.phone)) {
+      if (reg_tel.test(this.phone)) {
         alert("请输入正确的手机号码");
       } else {
         this.$router.push({
@@ -68,26 +71,11 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform: translate(-50%, 0%);
-  /* background-color: red; */
-}
-.header {
-  height: auto;
-}
 .phoneInput {
   border-bottom: 1px solid orange;
 }
 .input {
   border: 0;
-  outline: none;
-}
-.next {
-  border-style: none;
   outline: none;
 }
 .next {
@@ -98,9 +86,5 @@ export default {
   position: absolute;
   /* left: 50%; */
   bottom: 0;
-}
-.agree {
-  display: flex;
-  flex-direction: row;
 }
 </style>

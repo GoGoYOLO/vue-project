@@ -1,14 +1,19 @@
-<template >
-  <div class="container">
-    <h2>发现</h2>
-    <el-carousel :interval="4000" type="card" height="200px">
-      <el-carousel-item v-for="item in dataList" :key="item.id">
-        <h3 class="medium" style="text-align: center" @click="showText(item)">
-          {{ item.text }}
-        </h3>
-      </el-carousel-item>
-    </el-carousel>
-    <div class="footer">{{ text }}</div>
+<template>
+  <div class="b">
+    <div class="content">
+      <h2>发现</h2>
+      <el-carousel :interval="4000" type="card" height="200px">
+        <el-carousel-item
+          v-for="item in $store.state.musicAbout.musicList"
+          :key="item.id"
+        >
+          <h3 class="medium" style="text-align: center" @click="showText(item)">
+            {{ item.name }}
+          </h3>
+        </el-carousel-item>
+      </el-carousel>
+    </div>
+    <div class="dibu"></div>
   </div>
 </template>
 
@@ -16,44 +21,17 @@
 export default {
   name: "Home",
   data() {
-    return {
-      text: "0",
-      dataList: [
-        {
-          id: "001",
-          text: "111",
-        },
-        {
-          id: "002",
-          text: "222",
-        },
-        {
-          id: "003",
-          text: "333",
-        },
-        {
-          id: "004",
-          text: "444",
-        },
-      ],
-    };
+    return {};
   },
   methods: {
     showText(item) {
-      console.log(item.text);
-      this.text = item.text;
+      this.$store.commit("musicAbout/updateCurrentMusic", item.name);
     },
   },
 };
 </script>
 
 <style scoped>
-.container {
-  width: 100%;
-  /* display: flex; */
-  /* flex-direction: column; */
-}
-
 .footer {
   height: 60px;
   line-height: 60px;
