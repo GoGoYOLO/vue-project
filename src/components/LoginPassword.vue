@@ -48,9 +48,7 @@ export default {
     },
     login() {
       if (this.password != "") {
-        this.userList = this.$store.state.userAbout.userList;
-
-        this.user = this.userList.filter((user) => {
+        this.user = this.$store.state.userAbout.userList.filter((user) => {
           return user.phone === this.$route.query.phone;
         });
 
