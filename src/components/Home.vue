@@ -1,19 +1,16 @@
 <template>
-  <div class="body">
-    <div class="content">
-      <h2>发现</h2>
-      <el-carousel :interval="4000" type="card" height="200px">
-        <el-carousel-item
-          v-for="item in $store.state.musicAbout.musicList"
-          :key="item.id"
-        >
-          <h3 class="medium" style="text-align: center" @click="showText(item)">
-            {{ item.name }}
-          </h3>
-        </el-carousel-item>
-      </el-carousel>
-    </div>
-    <div class="foot"></div>
+  <div>
+    <h2>发现</h2>
+    <el-carousel :interval="4000" type="card" height="200px">
+      <el-carousel-item
+        v-for="item in $store.state.musicAbout.musicList"
+        :key="item.id"
+      >
+        <h3 class="medium" style="text-align: center" @click="showText(item)">
+          {{ item.name }}
+        </h3>
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 

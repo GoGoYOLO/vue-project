@@ -1,6 +1,5 @@
 <template>
-  <div class="body">
-    <div class="content">
+    <div>
       <h1>我的</h1>
       <div class="nick">{{ user.nickName }}</div>
 
@@ -10,13 +9,14 @@
           {{ item.name }} {{ item.num }}
         </div>
       </div>
+
+      <h5>自建歌单{{ user.songList.length }}</h5>
       <div class="self">
-        <h5>自建歌单{{ user.songList.length }}</h5>
-        <div class="row">
+        <div class="item">
           <div class="box2"></div>
           <div class="info">创建/导入歌单</div>
         </div>
-        <div v-for="item in user.songList" :key="item.id" class="row">
+        <div v-for="item in user.songList" :key="item.id" class="item">
           <div class="box2"></div>
           <div class="info column">
             <span>{{ item.name }}</span>
@@ -25,8 +25,8 @@
         </div>
       </div>
     </div>
-    <div class="foot"></div>
-  </div>
+   
+
 </template>
 
 <script>
@@ -36,8 +36,7 @@ export default {
     user() {
       return this.$store.state.userAbout.currentUser;
     },
-  },
-  methods: {},
+  }
 };
 </script>
 
@@ -51,7 +50,9 @@ export default {
 
 .box1 {
   line-height: 200px;
-  width: 400px;
+  flex: 1;
+  justify-content: space-around;
+  margin-right: 10px;
   text-align: center;
   background-color: greenyellow;
 }
@@ -66,7 +67,13 @@ export default {
 }
 
 .self {
-  float: left;
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+.item {
+  display: flex;
 }
 .info {
   line-height: 50px;
