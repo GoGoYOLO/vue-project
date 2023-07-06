@@ -16,18 +16,28 @@
 <script>
 export default {
   name: "App",
-  beforeCreate() {
-    document
-      .querySelector("html")
-      .setAttribute("style", "height: 100%;  width: 100%; margin: 0; overflow-y: scroll");
-    document
-      .querySelector("body")
-      .setAttribute("style", "height: 100%;  width: 100%; margin: 0; overflow-y: hidden");
+  mounted() {
+    document.getElementsByTagName('html')[0].className = 'html'
+    document.getElementsByTagName('body')[0].className = 'body'
   },
 };
 </script>
 
 <style>
+.html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+.body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  overflow-y: hidden;
+}
+
 .total {
   height: 100%;
   width: 100%;
@@ -79,7 +89,7 @@ input[type="number"] {
 
 .text {
   line-height: 50px;
-  padding-left: 10px;;
+  padding-left: 10px;
   border-top: 1px solid black;
 }
 .link {
