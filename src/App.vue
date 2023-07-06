@@ -4,8 +4,8 @@
     <div v-show="$store.state.userAbout.isLogin" class="navi">
       <div class="text">{{ $store.state.userAbout.currentUser.currentMusic }}</div>
       <div class="link">
-        <router-link active-class="red" to="/home">Home</router-link>
-        <router-link active-class="red" to="/user">User</router-link>
+        <router-link replace active-class="red" to="/home">Home</router-link>
+        <router-link replace active-class="red" to="/user">User</router-link>
       </div>
     </div>
   </div>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style>
-.b {
+.body {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -34,7 +34,7 @@ export default {
   overflow-y: auto;
 }
 
-.dibu {
+.foot {
   height: 100px;
   width: 100%;
 }
@@ -57,6 +57,15 @@ export default {
   display: flex;
   flex-direction: column;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+}
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
 
 .red {
   color: red;

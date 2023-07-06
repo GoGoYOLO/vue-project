@@ -1,5 +1,5 @@
 <template>
-  <div class="b">
+  <div class="body">
     <div class="content">
       <h1>我的</h1>
       <div class="nick">{{ user.nickName }}</div>
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="dibu"></div>
+    <div class="foot"></div>
   </div>
 </template>
 

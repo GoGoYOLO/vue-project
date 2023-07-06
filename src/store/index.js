@@ -69,11 +69,20 @@ const userAbout = {
   mutations: {
     addUser(state, value) {
       state.userList.push(value)
+      state.isLogin = true
+      state.currentUser = value
     },
     updateLoginStatus(state, value) {
       state.isLogin = true
       state.currentUser = value
     },
+    updateUserCurrentMusic(state, value) {
+      for (var i in state.userList) {
+        if (state.userList[i].phone === value.user.phone) {
+          state.userList[i].currentMusic = value.name
+        }
+      }
+    }
   }
 }
 

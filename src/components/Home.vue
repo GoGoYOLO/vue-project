@@ -1,5 +1,5 @@
 <template>
-  <div class="b">
+  <div class="body">
     <div class="content">
       <h2>发现</h2>
       <el-carousel :interval="4000" type="card" height="200px">
@@ -13,7 +13,7 @@
         </el-carousel-item>
       </el-carousel>
     </div>
-    <div class="dibu"></div>
+    <div class="foot"></div>
   </div>
 </template>
 
@@ -22,7 +22,10 @@ export default {
   name: "Home",
   methods: {
     showText(item) {
-      this.$store.state.userAbout.currentUser.currentMusic = item.name;
+      this.$store.commit("userAbout/updateUserCurrentMusic", {
+        user: this.$store.state.userAbout.currentUser,
+        name: item.name,
+      });
     },
   },
 };

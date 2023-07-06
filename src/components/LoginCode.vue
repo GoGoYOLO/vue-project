@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <h2>请输入12345</h2>
+      <h2 v-pre>请输入12345</h2>
       <h4 style="color: grey">
         验证码已发送至您的手机 +86 {{ $route.query.phone }}
       </h4>
@@ -32,6 +32,7 @@
 
 <script>
 import { nanoid } from "nanoid";
+import mixin from "../mixin";
 
 export default {
   name: "LoginCode",
@@ -42,11 +43,12 @@ export default {
       sec: 5,
     };
   },
+  mixins: [mixin],
   methods: {
     again() {
-      this.sec = 5;
+      this.sec = 6;
       let time = window.setInterval(() => {
-        if (this.sec < 6) {
+        if (this.sec <= 6) {
           this.sec--;
         }
         if (this.sec == 0) {
@@ -55,21 +57,19 @@ export default {
         }
       }, 1000);
     },
+
     login() {
       if (this.code !== "") {
         this.userList = this.$store.state.userAbout.userList;
 
         this.user = this.userList.filter((user) => {
-          return user.phone == this.$route.query.phone;
+          return user.phone === this.$route.query.phone;
         });
 
         if (this.user.length == 1) {
           if (this.code == "12345") {
             this.$store.commit("userAbout/updateLoginStatus", this.user[0]);
-            this.$router.replace({
-              name: "user",
-            });
-            this.code = "";
+            this.toUser();
           } else {
             alert("验证码不正确");
           }
@@ -85,11 +85,7 @@ export default {
               songList: [],
             };
             this.$store.commit("userAbout/addUser", userObj);
-            this.$store.commit("userAbout/updateLoginStatus", userObj);
-            this.$router.replace({
-              name: "user",
-            });
-            this.code = "";
+            this.toUser();
           } else {
             alert("验证码不正确");
           }
@@ -100,20 +96,15 @@ export default {
     },
   },
   mounted() {
-    let time = window.setInterval(() => {
-      if (this.sec < 6) {
-        this.sec--;
-      }
-      if (this.sec == 0) {
-        window.clearInterval(time);
-        this.sec = "";
-      }
-    }, 1000);
+    this.again();
+  },
+  beforeDestroy() {
+    this.code = "";
   },
 };
 </script>
 
-<style>
+<style scoped>
 .btn {
   width: 100%;
   margin-top: 20px;

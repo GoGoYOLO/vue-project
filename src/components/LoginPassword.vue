@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div>
+    <div v-pre>
       <h2>请输入登录密码</h2>
       <h4 style="color: grey">使用手机号密码登录</h4>
     </div>
@@ -26,6 +26,7 @@
 
 <script>
 import { nanoid } from "nanoid";
+import mixin from "../mixin";
 
 export default {
   name: "LoginPassword",
@@ -35,6 +36,7 @@ export default {
       user: {},
     };
   },
+  mixins: [mixin],
   methods: {
     toCode() {
       this.$router.push({
@@ -49,16 +51,13 @@ export default {
         this.userList = this.$store.state.userAbout.userList;
 
         this.user = this.userList.filter((user) => {
-          return user.phone == this.$route.query.phone;
+          return user.phone === this.$route.query.phone;
         });
 
         if (this.user.length == 1) {
           if (this.password == this.user[0].password) {
-            this.$router.replace({
-              name: "user",
-            });
-            this.password = "";
             this.$store.commit("userAbout/updateLoginStatus", this.user[0]);
+            this.toUser();
           } else {
             alert("密码不正确");
           }
@@ -73,16 +72,15 @@ export default {
             songList: [],
           };
           this.$store.commit("userAbout/addUser", userObj);
-          this.$store.commit("userAbout/updateLoginStatus", userObj);
-          this.$router.replace({
-            name: "user",
-          });
-          this.password = "";
+          this.toUser();
         }
-      }else{
-        alert('请输入密码')
+      } else {
+        alert("请输入密码");
       }
     },
+  },
+  beforeDestroy() {
+    this.password = "";
   },
 };
 </script>

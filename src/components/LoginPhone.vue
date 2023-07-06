@@ -49,9 +49,6 @@ export default {
       phone: "",
     };
   },
-  mounted() {
-    this.userList = this.$store.state.userAbout.userList;
-  },
   methods: {
     toPassword() {
       const reg_tel =
@@ -77,14 +74,6 @@ export default {
 .input {
   border: 0;
   outline: none;
-}
-
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none !important;
-}
-input[type='number'] {
-  -moz-appearance: textfield;
 }
 
 .next {
